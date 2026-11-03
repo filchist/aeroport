@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Управленческий детектив по роману «Аэропорт»: вы — инспектор комиссии. 142 эпизода, 18 личных дел и материалы эпохи, чтобы оценить решения и ответственность действующих лиц.">
 <meta name="theme-color" content="#17120c">
-<title>Дело об аэропорте Линкольна — управленческий детектив</title>
+<title>Артур Хейли · «Аэропорт» — дело № 11-67</title>
 <style>
 :root{
   --paper:#f2e8d5; --panel:#fbf5e6; --ink:#17120c; --muted:#6b6355;
@@ -226,16 +226,22 @@ section.alt{background:#e9dfc6;border-top:3px solid var(--ink);border-bottom:3px
 .grid.two{grid-template-columns:repeat(2,1fr)}
 @media (max-width:700px){.grid.two{grid-template-columns:1fr}}
 
+.ctx-card{padding-top:34px}
+@media (max-width:640px){.brand .small{letter-spacing:.05em;font-size:.58rem;line-height:1.45}}
+
+.footer .author{flex-basis:100%;border-top:1px solid rgba(255,255,255,.14);padding-top:12px;margin-top:4px;font-size:.8rem;color:#a99e88}
+@media (max-width:640px){.brand{font-size:.78rem;line-height:1.25}.topnav{gap:5px}.topnav a{font-size:.62rem;padding:4px 7px}}
+
 </style>
 </head>
 <body>
 <header class="topbar">
   <div class="wrap">
-    <div class="brand">Дело № 11-67<span class="small">Аэропорт Линкольна · комиссия по расследованию</span></div>
+    <div class="brand">Артур Хейли · «Аэропорт»<span class="small">Дело № 11-67: Аэропорт Линкольна · комиссия по расследованию происшествия</span></div>
     <nav class="topnav">
       <a href="#/" data-nav="home">Дело</a>
-      <a href="#/context" data-nav="context">Эпоха</a>
-      <a href="#/heroes" data-nav="heroes">Лица</a>
+      <a href="#/context" data-nav="context">Контекст</a>
+      <a href="#/heroes" data-nav="heroes">Участники</a>
       <a href="#/cases" data-nav="cases">Эпизоды</a>
     </nav>
   </div>
@@ -248,6 +254,7 @@ section.alt{background:#e9dfc6;border-top:3px solid var(--ink);border-bottom:3px
 <footer class="footer"><div class="wrap">
   <div><b>Дело № 11-67</b> · управленческий детектив книжного клуба</div>
   <div class="next">Дело не закрыто…</div>
+  <div class="author">Автор идеи — Чистяков Филипп · @phichi84</div>
 </div></footer>
 
 <script>
@@ -300,27 +307,22 @@ function home(){
   <div class="hero"><div class="wrap">
     <div class="cover-top">
       <div class="cover-copy">
-        <div class="issue-line"><span class="issue">Дело № 11-67</span><span class="price">Служебно</span><span class="pub">Комиссия совета директоров и городских властей</span></div>
+        <div class="issue-line"><span class="issue">Дело № 11-67</span><span class="price">Конфиденциально</span><span class="pub">Расследование комиссии совета директоров и городских властей</span></div>
         <h1>Ночь, за которую кто-то должен ответить</h1>
-        <p>Пятница, метель, застрявший на полосе «Боинг-707». Комиссия, назначенная советом директоров аэропорта и городскими властями, разбирает, что произошло в аэропорту Линкольна. Вы — инспектор комиссии: вам предстоит оценить качество управленческих решений действующих лиц и меру их ответственности. В деле 142 эпизода, 18 личных дел и материалы эпохи.</p>
+        <p>Пятница, метель, застрявший на полосе «Боинг-707». Комиссия, назначенная советом директоров аэропорта и городскими властями, разбирает, что произошло в аэропорту Линкольна. Вы — инспектор комиссии: вам предстоит оценить качество управленческих решений действующих лиц и меру их ответственности. В деле 142 эпизода, 18 личных дел участников и материалы эпохи.</p>
         <div class="chips">
           <span class="chip"><b>142</b> эпизода</span>
           <span class="chip"><b>18</b> личных дел</span>
           <span class="chip"><b>15</b> направлений проверки</span>
-          <span class="chip"><b>9</b> блоков обстановки</span>
+          <span class="chip"><b>9</b> блоков контекста</span>
           <span class="chip"><b>1</b> ночь</span>
-        </div>
-        <div class="cover-actions">
-          <a class="btn accent" href="#/cases">Начать разбор</a>
-          <a class="btn" href="#/heroes">Личные дела</a>
         </div>
         <div class="issue-index">
           <div class="ih">В материалах дела</div>
-          <a href="#/context">Обстановка: 1950–1973</a>
+          <a href="#/context">Контекст: 1950–1973</a>
           <a href="#/heroes">18 личных дел: кто принимал решения</a>
           <a href="#/cases">142 эпизода: одна ночь, 15 направлений</a>
         </div>
-        <div class="art-note">Обложка собрана для этого дела в стиле печати 70-х (Kandinsky).</div>
       </div>
       <div class="cover-art">
         <span class="stamp">Аэропорт Линкольна · 1967</span>
@@ -334,17 +336,17 @@ function home(){
   <section><div class="wrap">
     <div class="sec-head">
       <h2>Как идёт расследование</h2>
-      <div class="sub">Комиссия двигается от условий к людям и решениям: сначала обстановка, затем личные дела, потом эпизоды — и оценка ответственности на заседании клуба.</div>
+      <div class="sub">Комиссия изучает контекст ситуации, действующих лиц и эпизоды с их участием. Изучите всё в удобном для вас порядке и составьте свои выводы о компетентности лиц, принимавших решения.</div>
     </div>
     <div class="grid">
       <div class="card ctx-card">
-        <div class="ttl">Обстановка — что было до ночи</div>
+        <div class="ttl">Контекст — что было до ночи</div>
         <div class="meta">9 блоков · 1950–1973</div>
         <div class="ex">Авиация росла быстрее инфраструктуры, защиты от угонов ещё не было, на подходе были лайнеры нового класса. Без этого нельзя судить решения той ночи.</div>
-        <a class="btn" href="#/context">К обстановке</a>
+        <a class="btn" href="#/context">К контексту</a>
       </div>
       <div class="card char-card">
-        <div class="ttl">Лица — кто принимал решения</div>
+        <div class="ttl">Участники — кто принимал решения</div>
         <div class="meta">18 личных дел</div>
         <div class="ex">Управляющий, диспетчер, механик, стюардесса, адвокат, безбилетница. Должность, полномочия, компетенции и личные обстоятельства — всё, что объясняет поступки.</div>
         <a class="btn" href="#/heroes">К личным делам</a>
@@ -352,11 +354,11 @@ function home(){
       <div class="card case-card">
         <div class="ttl">Эпизоды — что именно произошло</div>
         <div class="meta">142 эпизода · 15 направлений</div>
-        <div class="ex">Каждый эпизод — момент выбора: что произошло, дословная цитата, вывод и вопрос комиссии. Эпизоды связаны с лицами и обстановкой.</div>
+        <div class="ex">Каждый эпизод — момент выбора: что произошло, дословная цитата, вывод и вопрос комиссии. Эпизоды связаны с лицами и контекстом.</div>
         <a class="btn warm" href="#/cases">К эпизодам</a>
       </div>
     </div>
-    <div class="note-call"><b>Порядок работы комиссии:</b> 01 обстановка → 02 личные дела → 03 эпизоды → 04 оценка решений и ответственности на заседании клуба.</div>
+    <div class="note-call"><b>Материалы связаны между собой:</b> из эпизода можно перейти к его участникам, из личного дела — к эпизодам и контексту. Порядок изучения выбирает инспектор.</div>
   </div></section>
 
   <section class="alt"><div class="wrap">
@@ -402,9 +404,9 @@ function contextList(){
   const blocks = DATA.context;
   return `
   <div class="hero hero--blue"><div class="wrap">
-    <div class="kicker">Материалы дела · обстановка</div>
-    <h1>Обстановка: 1950–1973</h1>
-    <p>Чтобы судить решения той ночи, комиссия изучает условия: авиация росла быстрее инфраструктуры, на подходе были самолёты нового класса, защиты от угонов и взрывов ещё не существовало. Обстановка объясняет почти каждый эпизод. Без этого нельзя отличить ошибку от цены системы.</p>
+    <div class="kicker">Материалы дела · контекст</div>
+    <h1>Контекст: 1950–1973</h1>
+    <p>Чтобы судить решения той ночи, комиссия изучает условия: авиация росла быстрее инфраструктуры, на подходе были самолёты нового класса, защиты от угонов и взрывов ещё не существовало. Контекст объясняет почти каждый эпизод. Без этого нельзя отличить ошибку от цены системы.</p>
   </div></div>
   <section><div class="wrap">
     <div class="grid">
@@ -420,7 +422,7 @@ function contextList(){
     </div>
   </div></section>
   <section class="alt"><div class="wrap">
-    <div class="sec-head"><h2>Как обстановка объясняет эпизоды</h2></div>
+    <div class="sec-head"><h2>Как контекст объясняет эпизоды</h2></div>
     <div class="note-call">Пример: эпизод <a href="#/case/С-15">«Аэропорт под самолёт, которого ещё нет»</a> становится понятным только вместе с материалами <a href="#/context/ctx-jumbo">«Джамбо и сверхзвуковые»</a>: пока Мел три года доказывал Совету необходимость новой полосы, Boeing уже заказал лайнеры в 2,5 раза больше 707-го.</div>
   </div></section>
   `;
@@ -432,7 +434,7 @@ function contextDetail(id){
   const heroes = b.heroRefs || [];
   return `
   <div class="wrap" style="padding-top:24px">
-    <a class="back" href="#/context">← Все материалы обстановки</a>
+    <a class="back" href="#/context">← Весь контекст</a>
     <div class="detail">
       <div class="kicker-plain">${esc(b.period)}</div>
       <h1>${esc(b.title)}</h1>
@@ -440,12 +442,12 @@ function contextDetail(id){
       <h2>Ключевые факты</h2>
       <ul>${b.facts.map(f=>'<li>'+esc(f)+'</li>').join('')}</ul>
       <div class="note-call">${esc(b.note)}</div>
-      <h2>Эпизоды этой обстановки</h2>
+      <h2>Эпизоды этого контекста</h2>
       <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
         ${b.caseRefs.map(c=>`<a class="card case-card" href="#/case/${esc(c.id)}"><span class="case-tag">${esc(c.id)}</span><div class="ttl">${esc(c.title)}</div><div class="meta">${esc(c.themeMain)}</div><div class="ex">${esc(cut(c.id))}</div></a>`).join('')}
       </div>
-      <h2>Лица, связанные с этой обстановкой</h2>
-      ${heroes.length ? '<div class="linkrow">'+heroes.map(h=>'<a class="pill" href="#/hero/'+esc(h.id)+'">'+esc(h.name)+' · '+h.n+'</a>').join('')+'</div>' : '<div class="empty">Прямых связей с лицами дела не отмечено.</div>'}
+      <h2>Участники, связанные с этим контекстом</h2>
+      ${heroes.length ? '<div class="linkrow">'+heroes.map(h=>'<a class="pill" href="#/hero/'+esc(h.id)+'">'+esc(h.name)+' · '+h.n+'</a>').join('')+'</div>' : '<div class="empty">Прямых связей с участниками дела не отмечено.</div>'}
     </div>
   </div>
   `;
@@ -457,7 +459,7 @@ function heroesList(){
   <div class="comic-hero"><div class="wrap">
     <div class="kicker">18 личных дел · участники</div>
     <h1>Кто принимал решения в ту ночь</h1>
-    <p>Комиссия собрала дела всех, кто был в аэропорту и в рейсе: от управляющего до безбилетницы. В каждом деле — должность, полномочия, компетенции, личные обстоятельства и связи. Читайте как показания: что человек мог, чего хотел и что сделал. Задача инспектора — понять, где граница его ответственности.</p>
+    <p>Комиссия собрала дела всех, кто был в аэропорту и в рейсе: от управляющего до безбилетницы. В каждом деле — должность, полномочия, компетенции, личные обстоятельства и связи. Читайте как показания: что человек мог, чего хотел и что сделал. Задача инспектора — понять, где граница его ответственности: кто настоящий герой, а кто бесцеремонно превысил свои полномочия.</p>
   </div></div>
   <section><div class="wrap">
     <div class="searchbox">
@@ -500,7 +502,7 @@ function heroDetail(id){
     + '</div>';
   return `
   <div class="wrap" style="padding-top:22px">
-    <a class="back" href="#/heroes">← Все лица дела</a>
+    <a class="back" href="#/heroes">← Все участники</a>
   </div>
   <div class="wrap">
     <article class="dossier">
@@ -538,8 +540,8 @@ function heroDetail(id){
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(270px,1fr))">
       ${h.cases.map(c=>`<a class="card case-card" href="#/case/${esc(c.id)}"><span class="case-tag">${esc(c.id)}</span><div class="ttl">${esc(c.title)}</div><div class="meta">${esc(c.themeMain)}</div><div class="ex">${esc(cut(c.id))}</div></a>`).join('')}
     </div>
-    <h2 style="margin-top:34px">Обстановка, в которой принимались решения</h2>
-    ${ctxs.length ? '<div class="linkrow">'+ctxs.map(x=>'<a class="pill" href="#/context/'+esc(x.id)+'">'+esc(x.title)+'</a>').join('')+'</div>' : '<div class="empty">Материалов обстановки не отмечено.</div>'}
+    <h2 style="margin-top:34px">Контекст, в котором принимались решения</h2>
+    ${ctxs.length ? '<div class="linkrow">'+ctxs.map(x=>'<a class="pill" href="#/context/'+esc(x.id)+'">'+esc(x.title)+'</a>').join('')+'</div>' : '<div class="empty">Материалов контекста не отмечено.</div>'}
   </div>
   `;
 }
@@ -551,7 +553,7 @@ function casesList(params){
   <div class="hero hero--warm"><div class="wrap">
     <div class="kicker">Эпизоды дела</div>
     <h1>142 эпизода одной ночи</h1>
-    <p>Каждый эпизод — точка, где кто-то делал выбор. В карточке: что произошло, дословная цитата, вывод и вопрос для обсуждения. Задача инспектора — оценить, было ли решение обосновано полномочиями, временем и обстановкой. Фильтруйте по направлению проверки, ищите по словам и переходите к лицам и обстановке.</p>
+    <p>Каждый эпизод — точка, где кто-то делал выбор. В карточке: что произошло, дословная цитата, вывод и вопрос для обсуждения. Задача инспектора — оценить, было ли решение обосновано полномочиями, временем и контекстом. Фильтруйте по направлению проверки, ищите по словам и переходите к участникам и контексту.</p>
   </div></div>
   <section><div class="wrap">
     <div class="searchbox">
@@ -614,7 +616,7 @@ function caseDetail(id){
       <div class="field"><div class="fl">Вопрос комиссии</div>${esc(c.question)}</div>
       <h2>Кто участвовал в эпизоде</h2>
       ${hs.length ? '<div class="linkrow">'+hs.map(h=>'<a class="pill accent" href="#/hero/'+esc(h.id)+'">'+esc(h.name)+'</a>').join('')+'</div>' : '<div class="empty">Прямых участников не проставлено.</div>'}
-      <h2>Обстановка, которая объясняет эпизод</h2>
+      <h2>Контекст, который объясняет эпизод</h2>
       ${ctxs.length ? '<div class="linkrow">'+ctxs.map(x=>'<a class="pill" href="#/context/'+esc(x.id)+'">'+esc(x.title)+'</a>').join('')+'</div>' : '<div class="empty">Специальных материалов нет — эпизод объясняется самой сценой.</div>'}
     </div>
   </div>
