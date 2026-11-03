@@ -1,0 +1,14 @@
+{
+  "name": "aeroport-book-club",
+  "version": "1.0.0",
+  "private": true,
+  "description": "База знаний книжного клуба управленцев по роману Артура Хейли «Аэропорт»: 142 кейса, 18 героев, контекст 1950-1973",
+  "scripts": {
+    "build": "node src/kbase-build-data.js && node src/kbase-generate.js",
+    "data": "node src/kbase-build-data.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

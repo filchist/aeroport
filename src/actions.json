@@ -1,0 +1,19 @@
+[
+  {"type":"assert","selector":".hero h1","property":"text","equals":"Один вечер в аэропорту, который держит система"},
+  {"type":"click","selector":"a[data-nav='heroes']"},
+  {"type":"assert","selector":".comic-hero h1","property":"text","equals":"Люди, которые держат аэропорт"},
+  {"type":"assert","selector":"#heroGrid .cover:nth-child(2) .plate","property":"text","equals":"Таня Ливингстон"},
+  {"type":"fill","selector":"#heroSearch","value":"механик"},
+  {"type":"assert","selector":"#heroGrid .cover .plate","property":"text","equals":"Джо Патрони"},
+  {"type":"click","selector":"#heroGrid .cover"},
+  {"type":"assert","selector":".dname","property":"text","equals":"Джо Патрони"},
+  {"type":"assert","selector":".pfile","property":"text","equals":"Личное дело"},
+  {"type":"assert","selector":".db:nth-of-type(3) .db-h","property":"text","equals":"03Образование"},
+  {"type":"assert","selector":".db:nth-of-type(2) .db-h","property":"text","equals":"02Внешность"},
+  {"type":"click","selector":".db:nth-of-type(7) .linkrow a"},
+  {"type":"assert","selector":".dname","property":"text","equals":"Мел Бейкерсфелд"},
+  {"type":"click","selector":"a[data-nav='cases']"},
+  {"type":"assert","selector":"#caseCount","property":"text","equals":"Показано: 142 из 142"},
+  {"type":"click","selector":"#caseGrid .card"},
+  {"type":"assert","selector":".detail h1","property":"text","equals":"Пульт, где решают, куда ехать снегоочистителям"}
+]
