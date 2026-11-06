@@ -2,7 +2,7 @@
   "name": "aeroport-book-club",
   "version": "1.0.0",
   "private": true,
-  "description": "База знаний книжного клуба управленцев по роману Артура Хейли «Аэропорт»: 142 кейса, 18 героев, контекст 1950-1973",
+  "description": "Управленческий детектив по роману «Аэропорт»: инспектор комиссии разбирает 142 эпизода, 18 личных дел и обстановку 1950-1973",
   "scripts": {
     "build": "node src/kbase-build-data.js && node src/kbase-generate.js",
     "data": "node src/kbase-build-data.js"

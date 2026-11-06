@@ -1,7 +1,7 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 const path = require('path');
 const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'kbase-data.json'), 'utf8'));
-const STYLE = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+const STYLE = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8').replace(/^\uFEFF/, '');
 
 // portraits for hero dossier cards (base64, optional)
 const imgDir = path.join(__dirname, 'assets', 'heroes');
@@ -95,7 +95,7 @@ const themeOptions = Object.entries(themeCount).map(([t, c]) =>
   '<option value="#/cases?theme=' + encodeURIComponent(t) + '">' + escN(t) + ' — ' + c + '</option>'
 ).join('');
 const themeGrid = Object.entries(themeCount).map(([t, c]) =>
-  `<a class="card" style="cursor:pointer" href="#/cases?theme=${encodeURIComponent(t)}"><div class="ttl">${themeIcons[t]||''} ${escN(t)}</div><div class="meta">${c} кейс(ов)</div><div class="ex">${themeBlurb(t)}</div></a>`
+  `<a class="card" style="cursor:pointer" href="#/cases?theme=${encodeURIComponent(t)}"><div class="ttl">${themeIcons[t]||''} ${escN(t)}</div><div class="meta">${c} эпизод(ов)</div><div class="ex">${themeBlurb(t)}</div></a>`
 ).join('');
 
 const html = `<!DOCTYPE html>
@@ -103,9 +103,9 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="«Аэропорт» Артура Хейли как кейс-банк для книжного клуба управленцев: 142 управленческие ситуации, 18 личных дел героев и 9 блоков исторического контекста.">
+<meta name="description" content="Управленческий детектив по роману «Аэропорт»: вы — инспектор комиссии. 142 эпизода, 18 личных дел и материалы эпохи, чтобы оценить решения и ответственность действующих лиц.">
 <meta name="theme-color" content="#17120c">
-<title>«Аэропорт» Артура Хейли — база знаний управленца</title>
+<title>Артур Хейли · «Аэропорт» — дело № 11-67</title>
 <style>
 ${STYLE}
 </style>
@@ -113,23 +113,24 @@ ${STYLE}
 <body>
 <header class="topbar">
   <div class="wrap">
-    <div class="brand">Артур Хейли · «Аэропорт»<span class="small">База знаний управленца</span></div>
+    <div class="brand">Артур Хейли · «Аэропорт»<span class="small">Дело № 11-67: Аэропорт Линкольна · комиссия по расследованию происшествия</span></div>
     <nav class="topnav">
-      <a href="#/" data-nav="home">Главная</a>
+      <a href="#/" data-nav="home">Дело</a>
       <a href="#/context" data-nav="context">Контекст</a>
-      <a href="#/heroes" data-nav="heroes">Герои</a>
-      <a href="#/cases" data-nav="cases">Кейсы</a>
+      <a href="#/heroes" data-nav="heroes">Участники</a>
+      <a href="#/cases" data-nav="cases">Эпизоды</a>
     </nav>
   </div>
 </header>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-track">Ночь пятницы · метель · <b>142 кейса</b> · 18 личных дел · 9 блоков контекста · аэропорт Линкольна · 1967 · ночь пятницы · метель · <b>142 кейса</b> · 18 личных дел · 9 блоков контекста · аэропорт Линкольна · 1967 ·&nbsp;</div></div>
+<div class="ticker" aria-hidden="true"><div class="ticker-track">Ночь пятницы · метель · <b>142 эпизода</b> · 18 личных дел · 9 блоков обстановки · аэропорт Линкольна · дело № 11-67 · ночь пятницы · метель · <b>142 эпизода</b> · 18 личных дел · 9 блоков обстановки · аэропорт Линкольна · дело № 11-67 ·&nbsp;</div></div>
 
-<div id="app"><h1 style="padding:60px 20px;text-align:center;color:#6e6a60">«Аэропорт» Артура Хейли — база знаний управленца</h1><noscript><div class="wrap" style="padding:20px">Для работы базы знаний включите JavaScript.</div></noscript></div>
+<div id="app"><h1 style="padding:60px 20px;text-align:center;color:#6e6a60">Дело об аэропорте Линкольна</h1><noscript><div class="wrap" style="padding:20px">Для работы с материалами дела включите JavaScript.</div></noscript></div>
 
 <footer class="footer"><div class="wrap">
-  <div><b>«Аэропорт» (1968)</b> · база знаний для книжного клуба управленцев</div>
-  <div class="next">Продолжение следует…</div>
+  <div><b>Дело № 11-67</b> · управленческий детектив книжного клуба</div>
+  <div class="next">Дело не закрыто…</div>
+  <div class="author">Автор идеи — Чистяков Филипп · @phichi84</div>
 </div></footer>
 
 <script>
@@ -182,76 +183,72 @@ function home(){
   <div class="hero"><div class="wrap">
     <div class="cover-top">
       <div class="cover-copy">
-        <div class="issue-line"><span class="issue">№ 1</span><span class="price">25 ¢</span><span class="pub">Книжный клуб управленцев · выпуск 1968</span></div>
-        <h1>Один вечер в аэропорту, который держит система</h1>
-        <p>Ночь пятницы, метель, застрявший «Боинг-707» и сотни решений, от каждого из которых зависят чужие жизни. Роман Артура Хейли «Аэропорт» (1968) — это сжатый учебник управления: 142 управленческие ситуации, 18 героев и отраслевой контекст эпохи, когда авиация росла на 14% в год.</p>
+        <div class="issue-line"><span class="issue">Дело № 11-67</span><span class="price">Конфиденциально</span><span class="pub">Расследование комиссии совета директоров и городских властей</span></div>
+        <h1>Ночь, за которую кто-то должен ответить</h1>
+        <p>Пятница, метель, застрявший на полосе «Боинг-707». Комиссия, назначенная советом директоров аэропорта и городскими властями, разбирает, что произошло в аэропорту Линкольна. Вы — инспектор комиссии: вам предстоит оценить качество управленческих решений действующих лиц и меру их ответственности. В деле 142 эпизода, 18 личных дел участников и материалы эпохи.</p>
         <div class="chips">
-          <span class="chip"><b>142</b> кейса</span>
-          <span class="chip"><b>18</b> героев</span>
-          <span class="chip"><b>15</b> направлений</span>
+          <span class="chip"><b>142</b> эпизода</span>
+          <span class="chip"><b>18</b> личных дел</span>
+          <span class="chip"><b>15</b> направлений проверки</span>
           <span class="chip"><b>9</b> блоков контекста</span>
-          <span class="chip"><b>1</b> ночь действия</span>
-        </div>
-        <div class="cover-actions">
-          <a class="btn accent" href="#/cases">Открыть 142 кейса</a>
-          <a class="btn" href="#/heroes">18 личных дел</a>
+          <span class="chip"><b>1</b> ночь</span>
         </div>
         <div class="issue-index">
-          <div class="ih">В номере</div>
-          <a href="#/context">Эпоха и отрасль: 1950–1973</a>
-          <a href="#/heroes">18 личных дел: кто держит аэропорт</a>
-          <a href="#/cases">142 кейса: одна ночь, 15 направлений</a>
+          <div class="ih">В материалах дела</div>
+          <a href="#/context">Контекст: 1950–1973</a>
+          <a href="#/heroes">18 личных дел: кто принимал решения</a>
+          <a href="#/cases">142 эпизода: одна ночь, 15 направлений</a>
         </div>
-        <div class="art-note">Обложка собрана для этого издания в стиле печати 70-х (Kandinsky).</div>
       </div>
       <div class="cover-art">
-        <span class="stamp">Артур Хейли · 1968</span>
+        <span class="stamp">Аэропорт Линкольна · 1967</span>
         <img src="${COVER}" alt="Ночной аэропорт в снежную бурю — обложка в стиле комикса">
-        <div class="caption">Ночь пятницы. Метель. Одна полоса. Восемьдесят тысяч пассажиров.</div>
-        <div class="burst">142<br>кейса</div>
+        <div class="caption">Пятница. Метель. Одна полоса. Восемьдесят тысяч пассажиров. Вопрос один: кто отвечает?</div>
+        <div class="burst">142<br>эпизода</div>
       </div>
     </div>
   </div></div>
 
   <section><div class="wrap">
     <div class="sec-head">
-      <h2>Как устроена база знаний</h2>
-      <div class="sub">Три входа в одно и то же содержание: от человека — к его решениям, от ситуации — к обстоятельствам, от эпохи — к логике героев.</div>
+      <h2>Как идёт расследование</h2>
+      <div class="sub">Комиссия изучает контекст ситуации, действующих лиц и эпизоды с их участием. Изучите всё в удобном для вас порядке и составьте свои выводы о компетентности лиц, принимавших решения.</div>
     </div>
     <div class="grid">
       <div class="card ctx-card">
-        <div class="ttl">Контекст — эпоха и отрасль</div>
+        <div class="ttl">Контекст — что было до ночи</div>
         <div class="meta">9 блоков · 1950–1973</div>
-        <div class="ex">Что происходило с самолётами, пассажирами и аэропортами, когда писался роман. Отсюда понятны причины почти каждого кейса.</div>
+        <div class="ex">Авиация росла быстрее инфраструктуры, защиты от угонов ещё не было, на подходе были лайнеры нового класса. Без этого нельзя судить решения той ночи.</div>
         <a class="btn" href="#/context">К контексту</a>
       </div>
       <div class="card char-card">
-        <div class="ttl">Герои — люди в системе</div>
-        <div class="meta">18 личных дел · комикс-карточки</div>
-        <div class="ex">Управляющий, диспетчер, механик, стюардесса, адвокат, безбилетница. У каждого — портрет, должность, полномочия, компетенции и личные обстоятельства.</div>
-        <a class="btn" href="#/heroes">К героям</a>
+        <div class="ttl">Участники — кто принимал решения</div>
+        <div class="meta">18 личных дел</div>
+        <div class="ex">Управляющий, диспетчер, механик, стюардесса, адвокат, безбилетница. Должность, полномочия, компетенции и личные обстоятельства — всё, что объясняет поступки.</div>
+        <a class="btn" href="#/heroes">К личным делам</a>
       </div>
       <div class="card case-card">
-        <div class="ttl">Кейсы — управленческие ситуации</div>
-        <div class="meta">142 ситуации · 15 направлений</div>
-        <div class="ex">Каждая карточка: что происходит, цитата, урок и вопрос для клуба. Кейсы связаны с героями и контекстом.</div>
-        <a class="btn warm" href="#/cases">К кейсам</a>
+        <div class="ttl">Эпизоды — что именно произошло</div>
+        <div class="meta">142 эпизода · 15 направлений</div>
+        <div class="ex">Каждый эпизод — момент выбора: что произошло, дословная цитата, вывод и вопрос комиссии. Эпизоды связаны с лицами и контекстом.</div>
+        <a class="btn warm" href="#/cases">К эпизодам</a>
       </div>
     </div>
+    <div class="note-call"><b>Материалы связаны между собой:</b> из эпизода можно перейти к его участникам, из личного дела — к эпизодам и контексту. Порядок изучения выбирает инспектор.</div>
   </div></section>
 
   <section class="alt"><div class="wrap">
-    <div class="sec-head"><h2>Почему стоит прочитать роман</h2></div>
+    <div class="sec-head"><h2>Почему это детектив, а не учебник</h2></div>
     <div class="grid two">
       <div class="card"><div class="ttl">Решения видны с последствиями</div><div class="ex">В отличие от учебника, здесь результат решения виден через несколько глав — и его нельзя «откатить».</div></div>
       <div class="card"><div class="ttl">Власть без приказа</div><div class="ex">Управляющий аэропортом не командует диспетчерами и авиакомпаниями — только влияет. Это матричная структура в чистом виде.</div></div>
-      <div class="card"><div class="ttl">Отрасль на переломе</div><div class="ex">Роман застаёт момент, когда старые терминалы задыхаются, а на подходе — самолёты на 400–1000 мест. Многие кейсы — о цене отложенных решений.</div></div>
+      <div class="card"><div class="ttl">Отрасль на переломе</div><div class="ex">Роман застаёт момент, когда старые терминалы задыхаются, а на подходе — самолёты на 400–1000 мест. Многие эпизоды — о цене отложенных решений.</div></div>
       <div class="card"><div class="ttl">Срез реальных проблем</div><div class="ex">Угоны, бомбы ради страховки, «зайцы», перегрузка диспетчеров — не выдумка, а повестка отрасли 1968 года.</div></div>
     </div>
   </div></section>
 
   <section><div class="wrap">
-    <div class="sec-head"><h2>15 направлений управленческого мастерства</h2><div class="sub">Распределение 142 кейсов по темам. Переход к кейсам с фильтром проставлен автоматически.</div></div>
+    <div class="sec-head"><h2>15 направлений проверки</h2><div class="sub">Каждый эпизод размечен по направлению — так комиссия видит, где именно проседало управление. Переход к отфильтрованным эпизодам проставлен автоматически.</div></div>
     <div class="selects" style="margin-bottom:14px"><select id="homeThemeSel">${themeOptions}</select></div>
     <div class="grid">${themeGrid}</div>
   </div></section>
@@ -283,9 +280,9 @@ function contextList(){
   const blocks = DATA.context;
   return \`
   <div class="hero hero--blue"><div class="wrap">
-    <div class="kicker">Историческая справка</div>
-    <h1>Эпоха романа: 1950–1973</h1>
-    <p>Всё, что происходит в романе, объясняется тремя вещами: авиация росла быстрее инфраструктуры, на подходе были самолёты нового класса, а защита от угонов и взрывов ещё не существовала. Через контекст — к логике каждого кейса.</p>
+    <div class="kicker">Материалы дела · контекст</div>
+    <h1>Контекст: 1950–1973</h1>
+    <p>Чтобы судить решения той ночи, комиссия изучает условия: авиация росла быстрее инфраструктуры, на подходе были самолёты нового класса, защиты от угонов и взрывов ещё не существовало. Контекст объясняет почти каждый эпизод. Без этого нельзя отличить ошибку от цены системы.</p>
   </div></div>
   <section><div class="wrap">
     <div class="grid">
@@ -293,16 +290,16 @@ function contextList(){
         <div class="card ctx-card">
           <span class="idx">0\${i+1}</span>
           <div class="ttl">\${esc(b.title)}</div>
-          <div class="meta">\${esc(b.period)} · \${b.caseRefs.length} кейс(ов)</div>
+          <div class="meta">\${esc(b.period)} · \${b.caseRefs.length} эпизод(ов)</div>
           <div class="ex">\${esc(b.lead)}</div>
-          <a class="btn" href="#/context/\${esc(b.id)}">Разобрать</a>
+          <a class="btn" href="#/context/\${esc(b.id)}">Изучить</a>
         </div>
       \`).join('')}
     </div>
   </div></section>
   <section class="alt"><div class="wrap">
-    <div class="sec-head"><h2>Как контекст объясняет кейсы</h2></div>
-    <div class="note-call">Пример: кейс <a href="#/case/С-15">«Аэропорт под самолёт, которого ещё нет»</a> становится понятным только вместе с блоком <a href="#/context/ctx-jumbo">«Джамбо и сверхзвуковые»</a>: пока Мел три года доказывал Совету необходимость новой полосы, Boeing уже заказал лайнеры в 2,5 раза больше 707-го.</div>
+    <div class="sec-head"><h2>Как контекст объясняет эпизоды</h2></div>
+    <div class="note-call">Пример: эпизод <a href="#/case/С-15">«Аэропорт под самолёт, которого ещё нет»</a> становится понятным только вместе с материалами <a href="#/context/ctx-jumbo">«Джамбо и сверхзвуковые»</a>: пока Мел три года доказывал Совету необходимость новой полосы, Boeing уже заказал лайнеры в 2,5 раза больше 707-го.</div>
   </div></section>
   \`;
 }
@@ -313,7 +310,7 @@ function contextDetail(id){
   const heroes = b.heroRefs || [];
   return \`
   <div class="wrap" style="padding-top:24px">
-    <a class="back" href="#/context">← Все блоки контекста</a>
+    <a class="back" href="#/context">← Весь контекст</a>
     <div class="detail">
       <div class="kicker-plain">\${esc(b.period)}</div>
       <h1>\${esc(b.title)}</h1>
@@ -321,12 +318,12 @@ function contextDetail(id){
       <h2>Ключевые факты</h2>
       <ul>\${b.facts.map(f=>'<li>'+esc(f)+'</li>').join('')}</ul>
       <div class="note-call">\${esc(b.note)}</div>
-      <h2>Кейсы этого контекста</h2>
+      <h2>Эпизоды этого контекста</h2>
       <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
         \${b.caseRefs.map(c=>\`<a class="card case-card" href="#/case/\${esc(c.id)}"><span class="case-tag">\${esc(c.id)}</span><div class="ttl">\${esc(c.title)}</div><div class="meta">\${esc(c.themeMain)}</div><div class="ex">\${esc(cut(c.id))}</div></a>\`).join('')}
       </div>
-      <h2>Герои, связанные с этим контекстом</h2>
-      \${heroes.length ? '<div class="linkrow">'+heroes.map(h=>'<a class="pill" href="#/hero/'+esc(h.id)+'">'+esc(h.name)+' · '+h.n+'</a>').join('')+'</div>' : '<div class="empty">Прямых связей с героями не отмечено.</div>'}
+      <h2>Участники, связанные с этим контекстом</h2>
+      \${heroes.length ? '<div class="linkrow">'+heroes.map(h=>'<a class="pill" href="#/hero/'+esc(h.id)+'">'+esc(h.name)+' · '+h.n+'</a>').join('')+'</div>' : '<div class="empty">Прямых связей с участниками дела не отмечено.</div>'}
     </div>
   </div>
   \`;
@@ -336,13 +333,13 @@ function cut(id){ const c = DATA.cards.find(x=>x.id===id); return c ? (c.what.le
 function heroesList(){
   return \`
   <div class="comic-hero"><div class="wrap">
-    <div class="kicker">18 личных дел · комикс-карточки</div>
-    <h1>Люди, которые держат аэропорт</h1>
-    <p>У каждого героя — личное дело: должность, внешность, полномочия, сильные и слабые стороны, личная жизнь и связи. Начните с того, кто вам ближе: руководитель, эксперт, человек на переднем крае — или тот, чьих решений вы хотели бы избежать.</p>
+    <div class="kicker">18 личных дел · участники</div>
+    <h1>Кто принимал решения в ту ночь</h1>
+    <p>Комиссия собрала дела всех, кто был в аэропорту и в рейсе: от управляющего до безбилетницы. В каждом деле — должность, полномочия, компетенции, личные обстоятельства и связи. Читайте как показания: что человек мог, чего хотел и что сделал. Задача инспектора — понять, где граница его ответственности: кто настоящий герой, а кто бесцеремонно превысил свои полномочия.</p>
   </div></div>
   <section><div class="wrap">
     <div class="searchbox">
-      <input id="heroSearch" placeholder="Поиск героя…" aria-label="Поиск героя" oninput="renderHeroes(this.value)">
+      <input id="heroSearch" placeholder="Найти участника…" aria-label="Поиск участника" oninput="renderHeroes(this.value)">
     </div>
     <div id="heroGrid" class="covers"></div>
   </div></section>
@@ -353,12 +350,11 @@ function renderHeroes(q=''){
   const list = DATA.characters.filter(h => !qq || (h.name+' '+h.role+' '+h.tagline).toLowerCase().includes(qq));
   $('#heroGrid').innerHTML = list.map(h=>\`
     <a class="cover" href="#/hero/\${esc(h.id)}">
-      <div class="shot">\${HIMG[h.id] ? '<img src="'+HIMG[h.id]+'" alt="'+esc(h.name)+'">' : ''}</div>
-      <div class="plate">\${esc(h.name)}</div>
+      <div class="shot">\${HIMG[h.id] ? '<img src="'+HIMG[h.id]+'" alt="'+esc(h.name)+' — '+esc(h.role)+'">' : ''}</div>
+      \${HIMG[h.id] ? '' : '<div class="plate">'+esc(h.name)+'</div>'}
       <div class="under">
         <div class="n">Дело № \${h.num||''}</div>
-        <div>\${esc(h.role)}</div>
-        <div class="cnt">\${h.cases.length} кейс(ов)</div>
+        <div class="cnt">\${h.cases.length} эпизод(ов)</div>
       </div>
     </a>
   \`).join('') || '<div class="empty">Никого не нашли. Попробуйте иначе: «диспетчер», «управляющий», «адвокат».</div>';
@@ -381,15 +377,15 @@ function heroDetail(id){
     + '</div>';
   return \`
   <div class="wrap" style="padding-top:22px">
-    <a class="back" href="#/heroes">← Все герои</a>
+    <a class="back" href="#/heroes">← Все участники</a>
   </div>
   <div class="wrap">
     <article class="dossier">
       <div class="dossier-top">
         <figure class="portrait">
           <span class="case-no">№ \${h.num||''}</span>
-          \${HIMG[h.id] ? '<img src="'+HIMG[h.id]+'" alt="'+esc(h.name)+'">' : ''}
-          <figcaption class="cap">Архив аэропорта Линкольна</figcaption>
+          <div class="ph">\${HIMG[h.id] ? '<img src="'+HIMG[h.id]+'" alt="'+esc(h.name)+'">' : ''}</div>
+          <figcaption class="cap">Фото из дела № 11-67</figcaption>
         </figure>
         <div class="dossier-id">
           <h1 class="dname">\${esc(h.name)}</h1>
@@ -413,14 +409,14 @@ function heroDetail(id){
     </article>
 
     <div class="sec-head" style="margin-top:38px">
-      <h2>Кейсы героя (\${h.cases.length})</h2>
-      <div class="sub">Ситуации, в которых этот герой принимает решение, ошибается или отвечает за чужое.</div>
+      <h2>Эпизоды дела (\${h.cases.length})</h2>
+      <div class="sub">Моменты, где этот человек принимает решение, ошибается или отвечает за чужое.</div>
     </div>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(270px,1fr))">
       \${h.cases.map(c=>\`<a class="card case-card" href="#/case/\${esc(c.id)}"><span class="case-tag">\${esc(c.id)}</span><div class="ttl">\${esc(c.title)}</div><div class="meta">\${esc(c.themeMain)}</div><div class="ex">\${esc(cut(c.id))}</div></a>\`).join('')}
     </div>
-    <h2 style="margin-top:34px">Контекст, в котором действует герой</h2>
-    \${ctxs.length ? '<div class="linkrow">'+ctxs.map(x=>'<a class="pill" href="#/context/'+esc(x.id)+'">'+esc(x.title)+'</a>').join('')+'</div>' : '<div class="empty">Контекстных блоков не отмечено.</div>'}
+    <h2 style="margin-top:34px">Контекст, в котором принимались решения</h2>
+    \${ctxs.length ? '<div class="linkrow">'+ctxs.map(x=>'<a class="pill" href="#/context/'+esc(x.id)+'">'+esc(x.title)+'</a>').join('')+'</div>' : '<div class="empty">Материалов контекста не отмечено.</div>'}
   </div>
   \`;
 }
@@ -430,13 +426,13 @@ function casesList(params){
   const fTheme = P.get('theme') || '';
   return \`
   <div class="hero hero--warm"><div class="wrap">
-    <div class="kicker">Управленческие ситуации</div>
-    <h1>142 кейса из одной ночи</h1>
-    <p>Каждая карточка: где происходит, что делает герой, дословная цитата, урок и вопрос для обсуждения. Фильтруйте по направлению, ищите по словам и переходите от кейса к героям и контексту.</p>
+    <div class="kicker">Эпизоды дела</div>
+    <h1>142 эпизода одной ночи</h1>
+    <p>Каждый эпизод — точка, где кто-то делал выбор. В карточке: что произошло, дословная цитата, вывод и вопрос для обсуждения. Задача инспектора — оценить, было ли решение обосновано полномочиями, временем и контекстом. Фильтруйте по направлению проверки, ищите по словам и переходите к участникам и контексту.</p>
   </div></div>
   <section><div class="wrap">
     <div class="searchbox">
-      <input id="caseSearch" placeholder="Поиск по кейсам…" aria-label="Поиск по кейсам" oninput="renderCases()" value="">
+      <input id="caseSearch" placeholder="Поиск по эпизодам…" aria-label="Поиск по эпизодам" oninput="renderCases()" value="">
       <div class="selects">
         <select id="themeFilter" aria-label="Направление" onchange="renderCases()">
           <option value="">Все направления</option>
@@ -468,11 +464,11 @@ function renderCases(){
         <div class="meta">\${esc(c.where)}</div>
         \${themeTag(c.themeMain, c.themeExtra)}
         <div class="ex">\${esc(c.lesson)}</div>
-        <div class="meta">\${hs.length ? 'Герои: '+hs.map(h=>esc(h.name)).join(', ') : ''}</div>
-        <span class="btn warm">Разобрать кейс</span>
+        <div class="meta">\${hs.length ? 'Участники: '+hs.map(h=>esc(h.name)).join(', ') : ''}</div>
+        <span class="btn warm">Разобрать эпизод</span>
       </a>
     \`;
-  }).join('') || '<div class="empty">По такому запросу кейсов нет. Попробуйте «конфликт», «безбилет», «полоса».</div>';
+  }).join('') || '<div class="empty">По такому запросу эпизодов нет. Попробуйте «конфликт», «безбилет», «полоса».</div>';
 }
 
 function caseDetail(id){
@@ -483,27 +479,27 @@ function caseDetail(id){
   const len = rt(c.what+c.lesson);
   return \`
   <div class="wrap" style="padding-top:24px">
-    <a class="back" href="#/cases">← Все кейсы</a>
+    <a class="back" href="#/cases">← Все эпизоды</a>
     <div class="detail">
-      <div class="kicker-plain" style="color:var(--warm)">Кейс \${esc(c.id)} · \${esc(c.where)}</div>
+      <div class="kicker-plain" style="color:var(--warm)">Эпизод \${esc(c.id)} · \${esc(c.where)}</div>
       <h1>\${esc(c.title)}</h1>
       <div class="linkrow" style="margin-top:8px">\${themeTag(c.themeMain, c.themeExtra)}<span class="pill">~\${len} мин чтения</span></div>
-      <h2>Что происходит</h2>
+      <h2>Что произошло</h2>
       <p>\${esc(c.what)}</p>
       <blockquote>\u201C\${esc(c.quote)}\u201D</blockquote>
-      <div class="field"><div class="fl">Урок</div>\${esc(c.lesson)}</div>
-      <div class="field"><div class="fl">Вопрос для клуба</div>\${esc(c.question)}</div>
-      <h2>Герои этого кейса</h2>
-      \${hs.length ? '<div class="linkrow">'+hs.map(h=>'<a class="pill accent" href="#/hero/'+esc(h.id)+'">'+esc(h.name)+'</a>').join('')+'</div>' : '<div class="empty">Прямых героев не проставлено.</div>'}
-      <h2>Контекст, который объясняет кейс</h2>
-      \${ctxs.length ? '<div class="linkrow">'+ctxs.map(x=>'<a class="pill" href="#/context/'+esc(x.id)+'">'+esc(x.title)+'</a>').join('')+'</div>' : '<div class="empty">Специальных контекстных блоков нет — кейс объясняется самой сценой.</div>'}
+      <div class="field"><div class="fl">Вывод комиссии</div>\${esc(c.lesson)}</div>
+      <div class="field"><div class="fl">Вопрос комиссии</div>\${esc(c.question)}</div>
+      <h2>Кто участвовал в эпизоде</h2>
+      \${hs.length ? '<div class="linkrow">'+hs.map(h=>'<a class="pill accent" href="#/hero/'+esc(h.id)+'">'+esc(h.name)+'</a>').join('')+'</div>' : '<div class="empty">Прямых участников не проставлено.</div>'}
+      <h2>Контекст, который объясняет эпизод</h2>
+      \${ctxs.length ? '<div class="linkrow">'+ctxs.map(x=>'<a class="pill" href="#/context/'+esc(x.id)+'">'+esc(x.title)+'</a>').join('')+'</div>' : '<div class="empty">Специальных материалов нет — эпизод объясняется самой сценой.</div>'}
     </div>
   </div>
   \`;
 }
 
 function notFound(){
-  return '<div class="wrap" style="padding-top:60px"><div class="detail"><h1>Страница не найдена</h1><p>Перейдите на <a href="#/">главную</a> или к <a href="#/cases">кейсам</a>.</p></div></div>';
+  return '<div class="wrap" style="padding-top:60px"><div class="detail"><h1>Страница не найдена</h1><p>Перейдите на <a href="#/">главную</a> или к <a href="#/cases">эпизодам</a>.</p></div></div>';
 }
 
 /* ---------- router ---------- */

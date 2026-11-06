@@ -8,7 +8,7 @@ if (-not (Test-Path -LiteralPath $dst)) { New-Item -ItemType Directory -Path $ds
 $map = [ordered]@{
   "01_Mel_Bakersfeld.png"          = "mel-bakersfeld"
   "02_Tanya_Livingston.png"        = "tanya-livingston"
-  "03_Vernon_Demarest.png"         = "demerest"
+  "03-vernon.png"                  = "demerest"
   "04_Joe_Patroni.png"             = "patroni"
   "05_Keith_Bakersfeld.png"        = "keith-bakersfeld"
   "06_Gwen_Meighen.png"            = "gwen-meighen"
@@ -27,11 +27,10 @@ $map = [ordered]@{
 }
 
 $w = 520
-$h = 634
-$cropH = 975
+$h = 780
 $codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq 'image/jpeg' }
 $ep = New-Object System.Drawing.Imaging.EncoderParameters(1)
-$ep.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]84)
+$ep.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]76)
 
 $total = 0
 foreach ($k in $map.Keys) {
@@ -44,9 +43,8 @@ foreach ($k in $map.Keys) {
   $g.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
   $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
   $g.CompositingQuality = [System.Drawing.Drawing2D.CompositingQuality]::HighQuality
-  $srcRect = New-Object System.Drawing.Rectangle(0, 0, $img.Width, $cropH)
   $dstRect = New-Object System.Drawing.Rectangle(0, 0, $w, $h)
-  $g.DrawImage($img, $dstRect, $srcRect, [System.Drawing.GraphicsUnit]::Pixel)
+  $g.DrawImage($img, $dstRect)
   $g.Dispose()
   $bmp.Save($out, $codec, $ep)
   $bmp.Dispose()
