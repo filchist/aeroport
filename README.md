@@ -11,7 +11,33 @@
 ## Быстрый старт
 
 - **Просто открыть:** скачайте репозиторий и откройте `index.html` в браузере.
-- **GitHub Pages:** Settings → Pages → Source: *Deploy from a branch*, ветка `main`, папка `/ (root)`. Сайт будет доступен по адресу репозитория, `index.html` подхватится автоматически.
+- **GitHub Pages:** сайт уже подготовлен к публикации — `index.html` в корне, `.nojekyll` отключает Jekyll. Пошаговая инструкция ниже.
+
+### Публикация на GitHub
+
+1. Создайте на GitHub пустой репозиторий `aeroport-book-club` — без README, лицензии и `.gitignore`, чтобы не было конфликтов.
+2. В папке проекта выполните:
+
+```bash
+git init
+git add .
+git commit -m "Аэропорт: база знаний книжного клуба"
+git branch -M main
+git remote add origin https://github.com/<логин>/aeroport-book-club.git
+git push -u origin main
+```
+
+3. В репозитории откройте **Settings → Pages**, в **Source** выберите **Deploy from a branch**, ветку `main` и папку `/ (root)`, нажмите **Save**.
+4. Через 1–2 минуты сайт откроется по адресу `https://<логин>.github.io/aeroport-book-club/`.
+
+Если `git` ещё не настроен, перед первым коммитом укажите имя и почту:
+
+```bash
+git config --global user.name "Ваше имя"
+git config --global user.email "you@example.com"
+```
+
+Без команд: **GitHub Desktop → Add local repository → Publish repository**.
 
 ## Роль читателя
 
@@ -38,6 +64,8 @@
 ```
 .
 ├─ index.html                 готовый сайт (один файл, офлайн)
+├─ .nojekyll                  отключает Jekyll на GitHub Pages
+├─ .gitignore                 исключает сборку и проверочные скриншоты
 ├─ docs/
 │  ├─ aeroport-knizhny-klub.docx    методичка клуба: 8 встреч, 142 карточки
 │  ├─ aeroport-geroi.docx           карточки 18 героев
@@ -56,6 +84,8 @@
    ├─ actions.json                  сценарий браузерной проверки
    └─ tools/prep-portraits.ps1      подготовка карточек
 ```
+
+`src/kbase-data.json` и `.office-verify/` — локальные артефакты сборки и проверки, в git не попадают.
 
 ## Сборка
 
